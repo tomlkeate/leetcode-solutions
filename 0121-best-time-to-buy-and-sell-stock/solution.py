@@ -1,14 +1,11 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        currentProfit = 0
-        leftPointer = 0
-        rightPointer = 1
-        tempVal = 0
-        while rightPointer < len(prices):
-            if prices[rightPointer] > prices[leftPointer]:
-                tempVal = prices[rightPointer] - prices[leftPointer]
-                currentProfit = tempVal if tempVal > currentProfit else currentProfit
-            elif prices[rightPointer] < prices[leftPointer]:
-                leftPointer = rightPointer
-            rightPointer += 1
-        return currentProfit
+        # using sliding window technique
+        current_cheapest = prices[0]
+        current_max_profit = 0
+        for i in range(len(prices)):
+            if prices[i] < current_cheapest:
+                current_cheapest = prices[i]
+            if prices[i] - current_cheapest > current_max_profit:
+                current_max_profit = prices[i] - current_cheapest
+        return current_max_profit
