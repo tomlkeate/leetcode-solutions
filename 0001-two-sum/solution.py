@@ -1,10 +1,8 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        targetDictionary = {}
-        index = 0
-        for num in nums:
-            neededValue = target - num
-            if neededValue in targetDictionary:
-                return [index, targetDictionary[neededValue]]
-            targetDictionary[num] = index
-            index += 1
+        hashmap = {}
+        for index, num in enumerate(nums):
+            candidate = target - num
+            if candidate in hashmap:
+                return [hashmap[candidate], index]
+            hashmap[num] = index
