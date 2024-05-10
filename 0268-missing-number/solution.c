@@ -1,8 +1,7 @@
-int missingNumber(int* nums, int numsSize){
-    int num = 0;
+int missingNumber(int* nums, int numsSize) {
+    int flag = numsSize;
     for (int i = 0; i < numsSize; i++) {
-        num ^= nums[i] ^ i;
+        flag ^= i ^ nums[i];
     }
-    num ^= numsSize;
-    return num;
+    return flag;
 }
