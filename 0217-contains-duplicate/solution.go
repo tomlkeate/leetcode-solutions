@@ -1,11 +1,10 @@
 func containsDuplicate(nums []int) bool {
-    values := make(map[int]bool)
-    for _, i := range nums {
-        _, exists := values[i]
-        if exists {
+    nums_map := make(map[int]bool)
+    for _, num := range nums {
+        if _, exists := nums_map[num]; exists {
             return true
         }
-        values[i] = true
+        nums_map[num] = true
     }
     return false
 }
