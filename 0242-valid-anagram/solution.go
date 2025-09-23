@@ -1,16 +1,14 @@
 func isAnagram(s string, t string) bool {
-    letters := make([]int, 26)
-    for _, letter := range s {
-        letters[letter - 'a']++
+    if len(s) != len(t) {
+        return false
     }
-    for _, letter := range t {
-        letters[letter - 'a']--
-        if letters[letter - 'a'] < 0 {
-            return false
-        }
+    letters := [26]int{}
+    for _, c := range s {
+        letters[c - 'a']++
     }
-    for _, value := range letters {
-        if value != 0 {
+    for _, c := range t {
+        letters[c - 'a']--
+        if letters[c - 'a'] < 0 {
             return false
         }
     }
