@@ -1,18 +1,19 @@
 func groupAnagrams(strs []string) [][]string {
-    index_map := make(map[[26]int]int)
-    result := [][]string{}
+    store := make(map[[26]int][]string)
     for _, str := range strs {
-        key := [26]int{}
+        hash := [26]int{}
         for _, c := range str {
-            key[c - 'a']++
+            hash[c - 'a']++
         }
-        index, exists := index_map[key]
-        if !exists {
-            index_map[key] = len(result)
-            result = append(result, []string{str})
+        if strings, exists := store[hash]; exists {
+            store[hash] = append(strings, str)
         } else {
-            result[index] = append(result[index], str)
+            store[hash] = []string{str}
         }
     }
-    return result
+    ans := [][]string{}
+    for _, value := range store {
+        ans = append(ans, value)
+    }
+    return ans
 }
