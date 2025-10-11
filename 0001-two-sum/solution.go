@@ -1,10 +1,10 @@
 func twoSum(nums []int, target int) []int {
-    nums_map := make(map[int]int)
+    store := make(map[int]int)
     for i, num := range nums {
-        if index, exists := nums_map[target - num]; exists {
-            return []int{i, index}
+        if j, exists := store[target - num]; exists {
+            return []int{i, j}
         }
-        nums_map[num] = i
+        store[num] = i
     }
-    return nil
+    return []int{}
 }
